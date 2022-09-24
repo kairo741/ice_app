@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ice App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        brightness: Brightness.dark
+        brightness: Brightness.dark,
       ),
       home: const HomePage(title: 'Ice App'),
     );
