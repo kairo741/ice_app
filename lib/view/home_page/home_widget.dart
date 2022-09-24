@@ -7,10 +7,22 @@ class HomeWidget extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.grey[850] ,
         centerTitle: true,
         title: const Icon(
           Icons.icecream,
           color: Colors.pink,
+          shadows: [BoxShadow(
+            color: Colors.pink,
+            spreadRadius: 4,
+            blurRadius: 10,
+          ),
+            BoxShadow(
+              color: Colors.pink,
+              spreadRadius: -4,
+              blurRadius: 5,
+            )],
           size: 50,
         ),
       ),
