@@ -1,3 +1,4 @@
+import 'package:ice_app/domain/dto/ice_cream_buy_dto.dart';
 import 'package:ice_app/domain/dto/ice_cream_dto.dart';
 import 'package:ice_app/domain/entity/coverage.dart';
 import 'package:ice_app/domain/entity/flavour.dart';
@@ -42,7 +43,13 @@ class IceCream {
         .toList();
 
     // Valida preço mínimo
-    if (dto.price <= 0) throw MinPriceException();
+    if (dto.price <= 5) throw MinPriceException();
     price = dto.price;
+  }
+
+  calcPrice(IceCreamBuyDTO dto) {
+    var iceCream = IceCream.create(dto.iceCream!);
+
+    iceCream.price = (dto.weight * 45.99) * ((dto.rate ?? 5) / 50);
   }
 }
