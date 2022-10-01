@@ -1,9 +1,7 @@
-
 abstract class DynamicDAO {
-  save (dynamic ice);
+  save(dynamic ice);
 
-
-  remove (int id);
+  remove(int id);
 
   Future<dynamic> find(int id);
 
