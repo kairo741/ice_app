@@ -1,6 +1,6 @@
 import 'package:ice_app/domain/dto/holder_dto.dart';
 import 'package:ice_app/infra/configuration/connection.dart';
-import 'package:ice_app/infra/dao/dynamic_dao.dart';
+import 'package:ice_app/infra/dao/interfaces/dynamic_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
 class HolderDAOImpl implements DynamicDAO {

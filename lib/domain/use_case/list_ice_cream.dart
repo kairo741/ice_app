@@ -9,5 +9,8 @@ class ListIceCream {
     // a
   }
 
-  formatFlavours() {}
+  formatFlavours() {
+
+
+  }
 }

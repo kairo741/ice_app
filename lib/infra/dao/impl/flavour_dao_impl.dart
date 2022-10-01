@@ -1,17 +1,18 @@
 import 'package:ice_app/domain/dto/flavour_dto.dart';
 import 'package:ice_app/infra/configuration/connection.dart';
-import 'package:ice_app/infra/dao/dynamic_dao.dart';
+import 'package:ice_app/infra/dao/interfaces/flavour_dao.dart';
+import 'package:ice_app/infra/dao/interfaces/user_flavours_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
-class FlavourDAOImpl implements DynamicDAO {
+class FlavourDAOImpl implements FlavourDAO {
   Database? _db;
   var sql;
 
   @override
-  Future<List<FlavourDTO>> find(int id) async {
+  Future<FlavourDTO> find(int id) async {
     _db = await Connection.get();
     List<Map<String, dynamic>> result = await _db!.query('flavour', where: "id = $id");
-    List<FlavourDTO> resultList = List.generate(result.length, (index) {
+    FlavourDTO resultList = List.generate(result.length, (index) {
       var row = result[index];
       return FlavourDTO(
         id: row[FlavourDTO.ID],
@@ -19,7 +20,7 @@ class FlavourDAOImpl implements DynamicDAO {
         color: row[FlavourDTO.COLOR],
         base: row[FlavourDTO.BASE],
       );
-    });
+    }).first; // TODO - corrigir
     return resultList;
   }
 
@@ -57,5 +58,11 @@ class FlavourDAOImpl implements DynamicDAO {
       sql = "UPDATE flavour SET name=?, color=?, base=? WHERE id=?";
       await _db!.rawUpdate(sql, [flavour.name, flavour.color, flavour.base, flavour.id]);
     }
+  }
+
+  @override
+  List<FlavourDTO> listUserFlavours() {
+    // TODO: implement listFlavours
+    throw UnimplementedError();
   }
 }
