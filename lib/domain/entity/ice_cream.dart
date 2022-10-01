@@ -29,9 +29,7 @@ class IceCream {
     holder = Holder(name: dto.holder.name, amountOfBall: dto.holder.amountOfBall);
 
     // Valida quantidade de bolas por sabor
-    if (dto.flavours.length > amountOfBalls) throw FlavourException();
-    flavours =
-        dto.flavours.map((e) => Flavour(name: e.name, color: e.color, base: e.base)).toList();
+    validateBallsByFlavour(dto);
 
     // Valida máximo de coberturas
     if (dto.coverages.length > 2) throw CoverageLimitException();
@@ -45,6 +43,12 @@ class IceCream {
     // Valida preço mínimo
     if (dto.price <= 5) throw MinPriceException();
     price = dto.price;
+  }
+
+  validateBallsByFlavour(IceCreamDTO dto) {
+    if (dto.flavours.length > amountOfBalls) throw FlavourException();
+    flavours =
+        dto.flavours.map((e) => Flavour(name: e.name, color: e.color, base: e.base)).toList();
   }
 
   calcPrice(IceCreamBuyDTO dto) {
