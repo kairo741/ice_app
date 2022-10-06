@@ -1,6 +1,5 @@
-
 const createFlavour = """
-CREATE TABLE flavour
+CREATE TABLE flavour (
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
 ,color VARCHAR(150) NOT NULL
@@ -11,7 +10,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 """;
 
 const createCoverage = """
-CREATE TABLE holder
+CREATE TABLE holder (
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
 ,id_flavour INT NOT NULL
@@ -25,7 +24,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 """;
 
 const createHolder = """
-CREATE TABLE holder
+CREATE TABLE holder (
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
 ,amount_OfBalls INT NOT NULL
@@ -35,7 +34,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 """;
 
 const createIceCream = """
-CREATE TABLE ice_cream
+CREATE TABLE ice_cream (
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,id_flavour INT NOT NULL
 ,id_holder INT NOT NULL
@@ -49,3 +48,13 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 """;
 
+const createIceCreamFlavour = """
+CREATE TABLE ice_cream_flavour
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,id_flavour INT NOT NULL
+,id_ice_cream INT NOT NULL
+
+,FOREIGN KEY (id_flavour) REFERENCES flavour (id)
+,FOREIGN KEY (id_ice_cream) REFERENCES ice_cream (id)
+);
+""";
