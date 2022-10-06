@@ -1,5 +1,5 @@
 
-final createFlavour = """
+const createFlavour = """
 CREATE TABLE flavour
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
@@ -10,7 +10,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 """;
 
-final createCoverage = """
+const createCoverage = """
 CREATE TABLE holder
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
@@ -24,7 +24,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 """;
 
-final createHolder = """
+const createHolder = """
 CREATE TABLE holder
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,name VARCHAR(150) NOT NULL
@@ -34,7 +34,7 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 """;
 
-final createIce_cream = """
+const createIceCream = """
 CREATE TABLE ice_cream
 id INTEGER PRIMARY KEY AUTOINCREMENT
 ,id_flavour INT NOT NULL

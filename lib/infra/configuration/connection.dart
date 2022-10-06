@@ -1,3 +1,4 @@
+import 'package:ice_app/infra/configuration/database_script.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -9,15 +10,10 @@ class Connection {
       var path = join(await getDatabasesPath(), "stockDatabase");
       // deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, dbVersion) {
-        db.execute("""
-CREATE TABLE stock(
-id INTEGER PRIMARY KEY AUTOINCREMENT
-, name VARCHAR (255) NOT NULL
-, quantity INTEGER NOT NULL
-, create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
-, status CHAR(1) NOT NULL DEFAULT 'A'
-);
-"""); // TODO - Fazer SQL
+        db.execute(createFlavour);
+        db.execute(createCoverage);
+        db.execute(createHolder);
+        db.execute(createIceCream);
       });
     }
     return _db;
