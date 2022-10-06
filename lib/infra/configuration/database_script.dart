@@ -1,0 +1,51 @@
+
+final createFlavour = """
+CREATE TABLE flavour
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,name VARCHAR(150) NOT NULL
+,color VARCHAR(150) NOT NULL
+,base VARCHAR(150)
+,create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+,status CHAR(1) NOT NULL DEFAULT 'A'
+);
+""";
+
+final createCoverage = """
+CREATE TABLE holder
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,name VARCHAR(150) NOT NULL
+,id_flavour INT NOT NULL
+,type VARCHAR(150) NOT NULL
+,create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+,status CHAR(1) NOT NULL DEFAULT 'A'
+
+,FOREIGN KEY (id_flavour) REFERENCES flavour (id)
+
+);
+""";
+
+final createHolder = """
+CREATE TABLE holder
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,name VARCHAR(150) NOT NULL
+,amount_OfBalls INT NOT NULL
+,create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+,status CHAR(1) NOT NULL DEFAULT 'A'
+);
+""";
+
+final createIce_cream = """
+CREATE TABLE ice_cream
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,id_flavour INT NOT NULL
+,id_holder INT NOT NULL
+,amount_OfBalls INT NOT NULL
+,price DECIMAL(6,2) NOT NULL
+,create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+,status CHAR(1) NOT NULL DEFAULT 'A'
+
+,FOREIGN KEY (id_flavour) REFERENCES flavour (id)
+,FOREIGN KEY (id_holder) REFERENCES holder (id)
+);
+""";
+
