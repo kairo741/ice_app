@@ -1,30 +1,22 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ice_app/main.dart';
+import 'package:ice_app/domain/dto/bought_flavour_dto.dart';
+import 'package:ice_app/domain/entity/flavour.dart';
+import 'package:ice_app/domain/use_case/list_buyed_flavours.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  test('Formata Lista de Sabores do usuário', () {
+    var listIceCream = ListIceCream();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    var flavoursList = <Flavour>[];
+    flavoursList.add(Flavour(id: 1, name: "Chocolate", color: "Marrom", base: "Chocolate"));
+    flavoursList.add(Flavour(id: 1, name: "Chocolate", color: "Marrom", base: "Chocolate"));
+    flavoursList.add(Flavour(id: 1, name: "Chocolate", color: "Marrom", base: "Chocolate"));
+    flavoursList.add(Flavour(id: 2, name: "Morango", color: "Vermelho", base: "Calda de morango"));
+    flavoursList.add(Flavour(id: 2, name: "Morango", color: "Vermelho", base: "Calda de morango"));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    var formatted = listIceCream.formatFlavours(flavoursList);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(formatted,
+        [BoughtFlavourDTO("Chocolate", "Marrom", 3), BoughtFlavourDTO("Morango", "Vermelho", 2)]);
   });
 }

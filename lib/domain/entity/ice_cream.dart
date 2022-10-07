@@ -9,6 +9,7 @@ import 'package:ice_app/domain/error/flavour_exception.dart';
 import 'package:ice_app/domain/error/min_price_exception.dart';
 
 class IceCream {
+  int? id;
   late List<Flavour> flavours;
   late List<Coverage> coverages;
   late Holder holder;
@@ -16,7 +17,8 @@ class IceCream {
   late double price;
 
   IceCream(
-      {required this.flavours,
+      {this.id,
+      required this.flavours,
       required this.coverages,
       required this.holder,
       required this.amountOfBalls,
@@ -36,23 +38,23 @@ class IceCream {
     validateMinPrice(dto);
   }
 
-  validateBallsQnt(IceCreamDTO dto){
+  validateBallsQnt(IceCreamDTO dto) {
     if (dto.balls > holder.amountOfBall) throw BallLimitException();
     amountOfBalls = dto.balls;
     holder = Holder(name: dto.holder.name, amountOfBall: dto.holder.amountOfBall);
   }
 
-  validadeMaxCoverage(IceCreamDTO dto){
+  validadeMaxCoverage(IceCreamDTO dto) {
     if (dto.coverages.length > 2) throw CoverageLimitException();
     coverages = dto.coverages
         .map((e) => Coverage(
-        name: e.name,
-        flavour: Flavour(name: e.flavour.name, color: e.flavour.color, base: e.flavour.base),
-        type: e.type))
+            name: e.name,
+            flavour: Flavour(name: e.flavour.name, color: e.flavour.color, base: e.flavour.base),
+            type: e.type))
         .toList();
   }
 
-  validateMinPrice(IceCreamDTO dto){
+  validateMinPrice(IceCreamDTO dto) {
     if (dto.price <= 5) throw MinPriceException();
     price = dto.price;
   }
