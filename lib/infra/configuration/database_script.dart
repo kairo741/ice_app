@@ -58,3 +58,14 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 ,FOREIGN KEY (id_ice_cream) REFERENCES ice_cream (id)
 );
 """;
+
+const createCoverageHolder = """
+CREATE TABLE coverage_holder
+id INTEGER PRIMARY KEY AUTOINCREMENT
+,id_coverage INT NOT NULL
+,id_holder INT NOT NULL
+
+,FOREIGN KEY (id_coverage) REFERENCES coverage (id)
+,FOREIGN KEY (id_holder) REFERENCES holder (id)
+);
+""";
