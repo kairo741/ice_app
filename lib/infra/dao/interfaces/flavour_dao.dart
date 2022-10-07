@@ -9,5 +9,5 @@ abstract class FlavourDAO {
 
   Future<List<FlavourDTO>> findAll();
 
-  List<FlavourDTO> listUserFlavours();
+  Future<List<FlavourDTO>> listUserFlavours();
 }

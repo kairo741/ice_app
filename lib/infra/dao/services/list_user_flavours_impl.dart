@@ -7,8 +7,8 @@ class ListUserFlavoursImpl implements ListUserFlavours {
   final _dao = GetIt.I.get<FlavourDAO>();
 
   @override
-  List<Flavour> listFlavours() {
+  Future<List<Flavour>> listFlavours() async {
     _dao.listUserFlavours();
-    return [];
+    return Future.value([]);
   }
 }

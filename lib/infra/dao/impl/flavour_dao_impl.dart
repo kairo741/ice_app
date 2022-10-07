@@ -1,7 +1,7 @@
 import 'package:ice_app/domain/dto/flavour_dto.dart';
 import 'package:ice_app/infra/configuration/connection.dart';
 import 'package:ice_app/infra/dao/interfaces/flavour_dao.dart';
-import 'package:ice_app/infra/dao/interfaces/user_flavours_dao.dart';
+import 'package:ice_app/infra/dao/model/ice_cream_flavour_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class FlavourDAOImpl implements FlavourDAO {
@@ -61,8 +61,23 @@ class FlavourDAOImpl implements FlavourDAO {
   }
 
   @override
-  List<FlavourDTO> listUserFlavours() {
-    // TODO: implement listFlavours
-    throw UnimplementedError();
+  Future<List<FlavourDTO>> listUserFlavours() async {
+    List<Map<String, dynamic>> result = await _db!.query('ice_cream_flavour');
+
+    List<IceCreamFlavourModel> modelList = List.generate(result.length, (index) {
+      var row = result[index];
+      return IceCreamFlavourModel(
+          id: row[IceCreamFlavourModel.ID],
+          idFlavour: row[IceCreamFlavourModel.ID_FLAVOUR],
+          idIceCream: row[IceCreamFlavourModel.ID_ICE_CREAM]);
+    });
+
+    List<FlavourDTO> flavours = [];
+
+    for (var element in modelList) {
+      flavours.add(await find(element.idFlavour));
+    }
+
+    return flavours;
   }
 }
