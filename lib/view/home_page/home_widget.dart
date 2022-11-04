@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ice_app/view/historic/historic_screen.dart';
 import 'package:ice_app/view/home_page/home_page.dart';
 
 class HomeWidget extends State<HomePage> {
@@ -59,6 +60,17 @@ class HomeWidget extends State<HomePage> {
             ),
           ],
       ),
-    );
+        floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HistoricPage()),
+          );
+        },
+          label: const Text('Pedidos'),
+          icon: const Icon(Icons.star),
+        backgroundColor: Colors.pink,
+    ));
+
   }
 }
