@@ -1,5 +1,5 @@
 abstract class DynamicDAO {
-  save(dynamic ice);
+  Future<int> save(dynamic ice);
 
   remove(int id);
 

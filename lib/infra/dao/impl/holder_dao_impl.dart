@@ -1,9 +1,9 @@
 import 'package:ice_app/domain/dto/holder_dto.dart';
 import 'package:ice_app/infra/configuration/connection.dart';
-import 'package:ice_app/infra/dao/interfaces/dynamic_dao.dart';
+import 'package:ice_app/infra/dao/interfaces/holder_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
-class HolderDAOImpl implements DynamicDAO {
+class HolderDAOImpl implements HolderDAO {
   Database? _db;
   var sql;
 
@@ -45,15 +45,14 @@ class HolderDAOImpl implements DynamicDAO {
   }
 
   @override
-  save(dynamic holder) async {
-    holder as HolderDTO;
+  Future<int> save(HolderDTO holder) async {
     _db = await Connection.get();
     if (holder.id == null) {
       sql = """INSERT INTO holder (name, amount_of_ball) VALUES(?,?) """;
-      _db!.rawInsert(sql, [holder.name, holder.amountOfBall]);
+      return _db!.rawInsert(sql, [holder.name, holder.amountOfBall]);
     } else {
       sql = "UPDATE holder SET name=?, amount_of_ball=? WHERE id=?";
-      await _db!.rawUpdate(sql, [holder.name, holder.amountOfBall, holder.id]);
+      return await _db!.rawUpdate(sql, [holder.name, holder.amountOfBall, holder.id]);
     }
   }
 }

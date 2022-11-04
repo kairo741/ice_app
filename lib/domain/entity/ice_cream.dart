@@ -39,14 +39,14 @@ class IceCream {
   }
 
   validateBallsQnt(IceCreamDTO dto) {
-    if (dto.balls > holder.amountOfBall) throw BallLimitException();
-    amountOfBalls = dto.balls;
-    holder = Holder(name: dto.holder.name, amountOfBall: dto.holder.amountOfBall);
+    if (dto.balls! > holder.amountOfBall) throw BallLimitException();
+    amountOfBalls = dto.balls!;
+    holder = Holder(name: dto.holder!.name, amountOfBall: dto.holder!.amountOfBall);
   }
 
   validadeMaxCoverage(IceCreamDTO dto) {
-    if (dto.coverages.length > 2) throw CoverageLimitException();
-    coverages = dto.coverages
+    if (dto.coverages!.length > 2) throw CoverageLimitException();
+    coverages = dto.coverages!
         .map((e) => Coverage(
             name: e.name,
             flavour: Flavour(name: e.flavour.name, color: e.flavour.color, base: e.flavour.base),
@@ -55,14 +55,14 @@ class IceCream {
   }
 
   validateMinPrice(IceCreamDTO dto) {
-    if (dto.price <= 5) throw MinPriceException();
-    price = dto.price;
+    if (dto.price! <= 5) throw MinPriceException();
+    price = dto.price!;
   }
 
   validateBallsByFlavour(IceCreamDTO dto) {
-    if (dto.flavours.length > amountOfBalls) throw FlavourException();
+    if (dto.flavours!.length > amountOfBalls) throw FlavourException();
     flavours =
-        dto.flavours.map((e) => Flavour(name: e.name, color: e.color, base: e.base)).toList();
+        dto.flavours!.map((e) => Flavour(name: e.name, color: e.color, base: e.base)).toList();
   }
 
   calcPrice(IceCreamBuyDTO dto) {

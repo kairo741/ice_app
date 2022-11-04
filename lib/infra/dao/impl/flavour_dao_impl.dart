@@ -48,15 +48,14 @@ class FlavourDAOImpl implements FlavourDAO {
   }
 
   @override
-  save(dynamic flavour) async {
-    flavour as FlavourDTO;
+  Future<int> save(FlavourDTO flavour) async {
     _db = await Connection.get();
     if (flavour.id == null) {
       sql = """INSERT INTO flavour (name, color, base) VALUES(?,?,?) """;
-      _db!.rawInsert(sql, [flavour.name, flavour.color, flavour.base]);
+      return _db!.rawInsert(sql, [flavour.name, flavour.color, flavour.base]);
     } else {
       sql = "UPDATE flavour SET name=?, color=?, base=? WHERE id=?";
-      await _db!.rawUpdate(sql, [flavour.name, flavour.color, flavour.base, flavour.id]);
+      return await _db!.rawUpdate(sql, [flavour.name, flavour.color, flavour.base, flavour.id]);
     }
   }
 

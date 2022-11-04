@@ -1,7 +1,7 @@
 import 'package:ice_app/domain/dto/flavour_dto.dart';
 
 abstract class FlavourDAO {
-  save(FlavourDTO flavour);
+  Future<int> save(FlavourDTO flavour);
 
   remove(int id);
 

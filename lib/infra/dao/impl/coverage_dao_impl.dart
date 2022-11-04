@@ -1,9 +1,9 @@
 import 'package:ice_app/domain/dto/coverage_dto.dart';
 import 'package:ice_app/infra/configuration/connection.dart';
-import 'package:ice_app/infra/dao/interfaces/dynamic_dao.dart';
+import 'package:ice_app/infra/dao/interfaces/coverage_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
-class CoverageDAOImpl implements DynamicDAO {
+class CoverageDAOImpl implements CoverageDAO {
   Database? _db;
   var sql;
 
@@ -47,15 +47,14 @@ class CoverageDAOImpl implements DynamicDAO {
   }
 
   @override
-  save(dynamic coverage) async {
-    coverage as CoverageDTO;
+  Future<int> save(CoverageDTO coverage) async {
     _db = await Connection.get();
     if (coverage.id == null) {
       sql = """INSERT INTO coverage (name, flavour_id, type) VALUES(?,?,?) """;
-      _db!.rawInsert(sql, [coverage.name, coverage.flavour.id, coverage.type]);
+      return _db!.rawInsert(sql, [coverage.name, coverage.flavour.id, coverage.type]);
     } else {
       sql = "UPDATE coverage SET name=?, flavour_id=?, type=? WHERE id=?";
-      await _db!.rawUpdate(sql, [coverage.name, coverage.flavour.id, coverage.type, coverage.id]);
+      return await _db!.rawUpdate(sql, [coverage.name, coverage.flavour.id, coverage.type, coverage.id]);
     }
   }
 }
