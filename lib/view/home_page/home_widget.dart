@@ -9,56 +9,59 @@ class HomeWidget extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.grey[850] ,
+        backgroundColor: Colors.grey[850],
         centerTitle: true,
         title: const Icon(
           Icons.icecream,
           color: Colors.pink,
-          shadows: [BoxShadow(
-            color: Colors.pink,
-            spreadRadius: 4,
-            blurRadius: 10,
-          ),
+          shadows: [
+            BoxShadow(
+              color: Colors.pink,
+              spreadRadius: 4,
+              blurRadius: 10,
+            ),
             BoxShadow(
               color: Colors.pink,
               spreadRadius: -4,
               blurRadius: 5,
-            )],
+            )
+          ],
           size: 50,
         ),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 30,),
+          SizedBox(
+            height: 30,
+          ),
           Center(
             child: Container(
               height: 545,
               width: 370,
               decoration: BoxDecoration(
-                color: Colors.grey[850],
-                borderRadius: BorderRadius.circular(40),
-                border: Border.all(
-                  width: 3,
-                  color: Colors.pink,
-                  style: BorderStyle.solid,
-                ),
-                boxShadow: [ BoxShadow(
-                  color: Colors.pink,
-                  spreadRadius: 4,
-                  blurRadius: 10,
-                ),
-                  BoxShadow(
+                  color: Colors.grey[850],
+                  borderRadius: BorderRadius.circular(40),
+                  border: Border.all(
+                    width: 3,
                     color: Colors.pink,
-                    spreadRadius: -4,
-                    blurRadius: 5,
-                  )]
-              ),
-
-
-              ),
+                    style: BorderStyle.solid,
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.pink,
+                      spreadRadius: 4,
+                      blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: Colors.pink,
+                      spreadRadius: -4,
+                      blurRadius: 5,
+                    )
+                  ]),
             ),
-          ],
+          ),
+        ],
       ),
         floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

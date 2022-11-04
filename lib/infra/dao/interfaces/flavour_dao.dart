@@ -1,7 +1,7 @@
 import 'package:ice_app/domain/dto/flavour_dto.dart';
 
 abstract class FlavourDAO {
-  save(FlavourDTO flavour);
+  Future<int> save(FlavourDTO flavour);
 
   remove(int id);
 
@@ -9,5 +9,5 @@ abstract class FlavourDAO {
 
   Future<List<FlavourDTO>> findAll();
 
-  List<FlavourDTO> listUserFlavours();
+  Future<List<FlavourDTO>> listUserFlavours();
 }

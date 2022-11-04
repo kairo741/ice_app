@@ -1,6 +1,7 @@
 class Holder {
+  int? id;
   String name;
   int amountOfBall;
 
-  Holder({required this.name, required this.amountOfBall});
+  Holder({this.id, required this.name, required this.amountOfBall});
 }
