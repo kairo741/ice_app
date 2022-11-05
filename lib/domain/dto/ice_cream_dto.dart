@@ -9,7 +9,7 @@ class IceCreamDTO {
   static const String FLAVOURS = 'id_flavours';
   static const String COVERAGES = 'id_coverages';
   static const String HOLDER = 'id_holder';
-  static const String BALLS = 'balls';
+  static const String BALLS = 'amount_of_balls';
   static const String PRICE = 'price';
 
   int? id;

@@ -61,6 +61,7 @@ class FlavourDAOImpl implements FlavourDAO {
 
   @override
   Future<List<FlavourDTO>> listUserFlavours() async {
+    _db = await Connection.get();
     List<Map<String, dynamic>> result = await _db!.query('ice_cream_flavour');
 
     List<IceCreamFlavourModel> modelList = List.generate(result.length, (index) {

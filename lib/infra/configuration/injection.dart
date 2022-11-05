@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:ice_app/domain/ports/ice_cream_repository.dart';
-import 'package:ice_app/domain/ports/list_flavours.dart';
+import 'package:ice_app/domain/ports/list_flavours_port.dart';
+import 'package:ice_app/domain/use_case/list_buyed_flavours.dart';
 import 'package:ice_app/infra/dao/impl/coverage_dao_impl.dart';
 import 'package:ice_app/infra/dao/impl/flavour_dao_impl.dart';
 import 'package:ice_app/infra/dao/impl/holder_dao_impl.dart';
@@ -16,13 +17,14 @@ setupInjection() async {
   GetIt getIt = GetIt.I;
 
   /// DAO
-  getIt.registerSingleton<FlavourDAO>(FlavourDAOImpl());
-  getIt.registerSingleton<IceCreamDAO>(IceCreamDAOImpl());
   getIt.registerSingleton<HolderDAO>(HolderDAOImpl());
   getIt.registerSingleton<CoverageDAO>(CoverageDAOImpl());
+  getIt.registerSingleton<FlavourDAO>(FlavourDAOImpl());
+  getIt.registerSingleton<IceCreamDAO>(IceCreamDAOImpl());
 
-  getIt.registerSingleton<ListUserFlavours>(ListUserFlavoursImpl());
+  // getIt.registerSingleton<ListUserFlavoursPort>(ListUserFlavoursImpl());
   getIt.registerSingleton<IceCreamRepository>(IceCreamRepositoryImpl());
+  getIt.registerSingleton<ListUserFlavoursPort>(ListIceCream());
   // getIt.registerSingleton<ServiceSecundaryPort>(StockModelServiceImpl());
   // getIt.registerSingleton<StockModelServiceImpl>(StockModelServiceImpl());
 }

@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:ice_app/domain/entity/flavour.dart';
 import 'package:ice_app/domain/ports/ice_cream_repository.dart';
-import 'package:ice_app/domain/ports/list_flavours.dart';
+import 'package:ice_app/domain/ports/list_flavours_port.dart';
 import 'package:ice_app/infra/dao/interfaces/flavour_dao.dart';
 
 class IceCreamRepositoryImpl implements IceCreamRepository {

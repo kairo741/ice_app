@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ice_app/infra/configuration/injection.dart';
 import 'package:ice_app/view/home_page/home_page.dart';
 
 void main() {
+  setupInjection();
   runApp(const MyApp());
 }
 
